@@ -1,0 +1,60 @@
+<?php
+session_start();
+if (!isset($_SESSION['userName'])) {
+header("Location: login.php");
+}
+require '../dbcon.php';
+?>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html;  charset=iso-8859-1" />
+<!-- Title section -->
+<title>Online WS-Cerificate</title>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<link rel="stylesheet" href="css/normalize.css">
+
+<script>
+            $(function() {
+                $( "#datepicker" ).datepicker({
+changeMonth: true,
+changeYear: true,
+dateFormat:'yy-mm-dd',
+yearRange:'1980:2000'
+                });
+            });
+
+functionClearForm(){
+document.getElementById('datepicker').value="";
+document.getElementById('pass').value="";
+document.getElementById('compass').value="";
+            }
+</script>
+
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div id="main-menu">
+<nav>
+
+      <ul>
+              <li><a href="index.php"><img src="images/ahome.jpg" alt="Home" width="110" /> </a></li>
+             <li><a href="client.php"> <img src="images/aclient.jpg" alt="Clients" width="110" /></a></li>
+             <li><a href=" customer.php"> <img src="images/acustomer.jpg" alt="Customer" width="110" /></a></li>
+            <li><a href="index.php"><img src="images/ahome.jpg" alt="Home" width="110" /> </a></li>
+            
+ </ul>
+       
+</nav>
+
+<samp class="logoff"><a href="logoff.php"><img src="images/alogoff.jpg" alt="Log off" width="110" /></a></samp>
+</div>
+

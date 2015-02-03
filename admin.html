@@ -1,0 +1,54 @@
+<?php
+session_start();
+$mess="";
+if(isset($_POST["submit"])&&$_POST["submit"]=="Sign in") {
+//conncet to the database
+require_once("./dbcon/admin.php");
+include("./dbcon/dbcon.php"); //database connection function
+$user=$_POST["uname"];
+$password=md5($_POST["password"]);
+//retrieving data from db
+$query = "SELECT user_name FROM user_info WHERE user_name = '$user' AND password = '$password'";
+$result=mysql_query($query);
+while($row=mysql_fetch_array($result)) {
+$name=$row["0"];
+}
+if(mysql_affected_rows()==0) {
+$mess = "<font color=purple size=2><b>Wrong username or password.<br>Please try again.</b></font>";
+} else {
+$_SESSION["uname"]=$name;
+header("Location:./admin/admin.php");
+exit;
+}
+}
+?>
+
+<html>
+<head>
+<title>index page</title>
+</head>
+<body>
+<center>
+<!-- start of user loging part -->
+<form name="signin" method="post" action="">
+<table height="80px">
+<tr><td>User Name:
+<td><input type="text" name="uname" value="" >
+<tr><td>Password:
+<td><input type="password" name="password" value="">
+</table>
+<input type="submit" name="submit" value="Sign in">
+</form>
+<?php
+echo $mess."<br><br>";
+?>
+<!-- end of loging part -->
+</center>
+<!-- start of new user registration link -->
+<center>
+<font size="3">If you are a new user</font><br>
+<a href="./user/registration.php">Register now</a>
+</center>
+<!-- end of new user registration link -->
+</body>
+</html>

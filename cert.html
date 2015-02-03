@@ -1,0 +1,301 @@
+<?php
+ 
+
+$mess = ""; 
+if(isset($_POST["submit"])) {
+//conncet to the database require_once("../dbcon/welcome.php");
+include("../dbcon/dbcon.php");	//database connection function
+
+$id=$_POST["cid"];
+$industry=$_POST["cl_industry"];
+$implementation_deadline=$_POST["imp_dline"];
+$company=$_POST["cl_company"];
+$company_address=$_POST["cl_address"];
+$telephone=$_POST["cl_tel"];
+$fax=$_POST["cl_fax"];
+$email=$_POST["cl_email"];
+
+
+
+//if(isset($_POST["email_notification"])) {
+//$notification='Y';
+ 
+//} else {
+
+
+//}
+ 
+
+
+//$notification='N';
+ 
+
+$username=$_POST["username"];
+$password=md5($_POST["password"]);
+$password_conf=md5($_POST["password_conf"]);
+
+
+if($password!=$password_conf) {
+$mess="<font color='red'>Password and confirmation doesn't match.</font>";
+ exit;
+}
+ 
+
+$query = "INSERT INTO client_info(cid,  cl_industry, imp_dline, cl_company, 
+cl_address ,  cl_tel , cl_fax , cl_email , email_notification , username , password , ) VALUES
+
+(‘$id’  , $industry’ , ‘$implementation_deadline’ , 
+ ‘$company’ ,  ‘$company_address’,  ‘ ‘$telephone’ , ‘$fax`, `$email’ ,  ‘$notification’  ,  
+‘$username’ ,   ‘$password’ );
+$result = mysql_query($query);
+
+ 
+if(!$result) {
+
+$error = mysql_error(); print $error;
+exit;
+ }
+
+$mess = "<font color='white' align=center>Upload Successful ! !<br/>
+                            We will inform you ASAP<br/>
+							Check your inbox after 7 days! <br/>
+							Thank you! </font>";
+}
+?>
+ 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- head section -->
+</head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- Title section -->
+<title>Online WS-Cerificate</title>
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+
+<style type="text/css" media="all"> 
+<!--
+@import url("styles.css");
+-->
+</style>
+
+</head>
+<body background=ap.jpg>
+<div id="headerWrapper">
+  <div id="header">
+    <div id="logo"><a href="#"><img src="images/images3.jpg" alt="" width="220" height="117"></a></div>
+      
+  </div>
+</div>
+
+<div id="outerWrapper">
+  <div id="contentWrapper">
+    
+   <div id="leftColumn1">
+      <div id="leftColumnContent"> 
+      <ul>
+       
+		<li><a href="index.html"><img src="images/home.jpg" alt="Home" width="110" /></a></li>
+        <li><a href="inquiries.html"><img src="images/inquiries.jpg" alt="Inquiries" width="110" /></a></li>
+        <li><a href="standards.html"><img src="images/standards.jpg" alt="Standards" width="110"  /></a></li>
+       <li> <a href="contact.html"><img src="images/contact.jpg" alt="Contact Us" width="110" /> </a></li>
+        <li><a href="About.html"><img src="images/about.jpg" alt="About Us" width="110" /> </a></li>
+      </ul>
+       
+          
+      </div>
+    </div>
+    <div id="content">
+	
+
+         
+<P><h2 align=right>Publication Standardization</h2><hr color=green>
+   <br/><h3>Application</h3>
+                <p>
+                   <form>
+                          
+                     <table width=650>
+        
+                        <tr>
+                            <td>
+                             Subject*
+                            </td>
+                            
+                            <td>
+                             <select name="Subject">
+ 
+   <option>Chemistry</option>
+   <option>Science Fiction</option>
+   <option>Science and Tech</option> 
+   <option>Statistics</option>
+   <option>Biochemistry</option>
+   <option>Molecular Biology</option>
+   <option>Genetics</option>
+   <option>Accounting</option>
+   <option>Business Studies</option>
+   <option>Web Devoloping</option>
+   <option>Food Science</option>
+   <option>Short stories</option>
+   <option>Applications</option>
+   <option>Graphics</option>
+   <option>Medical Sciences</option>
+   <option>Engineering</option>
+   <option>Software Engineerinf</option>
+   <option>other</option>
+   <option>Zoology</option>
+   <option>Plant Sciences</option>
+   <option>Physics</option>
+   <option>Applied Mathematics</option>
+   <option>Pure Mathematics</option>
+   </select>
+                            </td>
+                          </tr>                      
+                         <tr>
+                            <td>No of Volumes*(before this)</td>
+                            <td>
+   <select name="No of Volumes"> 
+   <option></option> 
+   <option>1</option> 
+   <option>2</option> 
+   <option>3</option> 
+   <option>4</option>
+<option>5</option>
+<option>6</option>
+<option>more than 6</option>   
+   </select></td>
+                         </tr> 
+
+                        <tr>
+                            <td>
+                             Publisher*
+                            </td>
+                            
+                            <td>
+                             <input type="text" name="publisher" size="10">
+                            </td>
+                          </tr>
+
+                       
+
+                       <tr>
+                            <td>
+                             Publisher's Address*
+                            </td>
+                            
+                            <td>
+                               <textarea name="Publisher's Address" rows="5" cols="20"></textarea>
+                            </td>
+                       </tr>
+                                                     
+                       <tr>
+                            <td>
+                             Telephone*
+                            </td>
+                            
+                            <td>
+                             <input type="int" name="phone" size="10">
+                            </td>
+                          </tr>
+             
+                      <tr>
+                            <td>
+                             Fax*
+                            </td>
+                            
+                            <td>
+                             <input type="int" name="fax" size="10">
+                            </td>
+                          </tr>
+                                            
+                     <tr>
+                            <td>
+                             Email*
+                            </td>
+                            
+                            <td>
+                             <input type="text" name="email" size="10">
+                            </td>
+                          </tr>
+						  <tr><td><br></td><td><br></td></tr>						  
+				  <tr>
+                            <td>
+                             Username*
+                            </td>
+                            
+                            <td>
+                             <input type="text" name="username" size="10">
+                            </td>
+                          </tr>
+						  <tr></tr>
+						<tr>
+                            <td>
+                             Password*
+                            </td>
+                            
+                            <td>
+                             <input type="password" name="password" size="10">
+                            </td>
+                          </tr>
+						 
+						<tr>
+                            <td>
+                             Confirm Password*
+                            </td>
+                            
+                            <td>
+                             <input type="password" name="password_conf" size="10" maxlength="10">
+                            </td>
+                          </tr>    		  
+<tr><td><br></td><td><br></td></tr>
+                     <tr>
+                            <td>
+                             Send us your publication's PDF*
+                            </td>
+                            
+                            <td>
+                               <input type="text" name="upload your quality manual here" size="30">
+                            </td>
+                       </tr>
+
+                  <tr>
+
+                       <td>
+                        </td>
+
+                       <td>
+                          <input type="submit" value="send">
+                        </td>
+                </tr>
+                  
+                       
+ 
+                   </table>
+                     
+                </form>
+</p>
+
+    
+	
+	</div>
+    <br class="clearFloat" />
+  </div>
+  <div id="footer">
+	<hr color=green>
+    <div style="float: left; color:green">Copyrights &copy; Standard Publications Sri Lanka </div>
+    <div style="float: right; text-align: right;"><a href="#">Privacy</a> | <a href="#">Legal Conditions</a> | <a href="#">Site Map</a></div>
+  </div>
+  
+  <div id="credit"></div>
+</div>
+</body>
+</html>
+
+  
+  <div id="credit"></div>
+</div>
+</body>
+</html>
+
